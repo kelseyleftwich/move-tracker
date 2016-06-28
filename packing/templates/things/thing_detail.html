@@ -11,5 +11,9 @@
 	<p>Description: {{thing.description}}</p>
 
 	<p>Box: <a href="{% url 'box_detail' box_id=thing.box.id %}">{{thing.box}}</a></p>
-
+	<p>
+		<a href="{% url 'edit_thing' thing_id=thing.id %}">
+		Edit me!
+		</a>
+	</p>
 {% endblock content %}

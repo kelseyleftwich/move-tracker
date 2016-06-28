@@ -19,7 +19,12 @@ from packing import views
 
 urlpatterns = [
 	url(r'^$', views.index, name='home'),
+	# object detail
 	url(r'^boxes/(?P<box_id>[0-9]+)/$', views.box_detail, name='box_detail'),
 	url(r'^things/(?P<thing_id>[0-9]+)/$', views.thing_detail, name='thing_detail'),
+	# object edit
+	url(r'^boxes/(?P<box_id>[-\w]+)/edit/$', views.edit_box, name='edit_box'),
+	url(r'^things/(?P<thing_id>[-\w]+)/edit/$', views.edit_thing, name='edit_thing'),
+
     url(r'^admin/', admin.site.urls),
 ]
