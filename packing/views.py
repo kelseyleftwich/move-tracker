@@ -1,5 +1,10 @@
 from django.shortcuts import render
+from packing.models import Box, Thing
 
-# Create your views here.
 def index(request):
-	return render(request, 'index.html')
+	boxes = Box.objects.all()
+	return render(
+		request,
+		'index.html',
+		{'boxes': boxes,}
+		)
