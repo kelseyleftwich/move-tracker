@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{box.name}} - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+	<h2>Box Detail</h2>
+    <p>Name: {{box.name}}</p>
+	<p>Description: {{box.description}}</p>
+	<p>Contents:
+	<ul>
+		{% for thing in box.thing_set.all %}
+			<li>
+				<a href="{% url 'thing_detail' thing_id=thing.id %}">
+				{{thing.name}}
+				</a>
+			</li>
+		{% endfor %}	
+	</ul>
+	</p>
+
+{% endblock content %}

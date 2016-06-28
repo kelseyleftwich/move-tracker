@@ -7,9 +7,14 @@
 {% block content %}
     <h2>Homepage</h2>
 
+	<p>Boxes:
+	<ul>
 	{% for box in boxes %}
-		{{ box.name }}
-		{{ box.description }}
+		<li>
+			<a href="{% url 'box_detail' box_id=box.id %}">{{ box.name }}</a><br/>
+		</li>
 	{% endfor %}
+	</ul>
+	</p>
 
 {% endblock content %}
