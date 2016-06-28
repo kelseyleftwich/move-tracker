@@ -11,9 +11,11 @@
 	<p>Description: {{thing.description}}</p>
 
 	<p>Box: <a href="{% url 'box_detail' box_id=thing.box.id %}">{{thing.box}}</a></p>
+	{% if user == thing.user %}
 	<p>
 		<a href="{% url 'edit_thing' thing_id=thing.id %}">
 		Edit me!
 		</a>
 	</p>
+	{% endif %}
 {% endblock content %}

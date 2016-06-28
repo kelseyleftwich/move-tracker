@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from packing.forms import ThingForm, BoxForm
 from packing.models import Box, Thing
+from django.http import Http404
+from django.contrib.auth.decorators import login_required
 
 def index(request):
 	boxes = Box.objects.all()
@@ -26,9 +28,13 @@ def thing_detail(request, thing_id):
 		{'thing': thing,}
 		)
 
+@login_required
 def edit_thing(request, thing_id):
 	# grab the object
 	thing = Thing.objects.get(id=thing_id)
+	# check for valid user
+	if thing.user != request.user:
+		raise Http404
 	# set the form we're using...
 	form_class = ThingForm
 	# if form has been submitted
@@ -45,9 +51,13 @@ def edit_thing(request, thing_id):
 		# and render the template
 		return render(request, 'things/edit_thing.html', {'thing': thing, 'form': form,})
 
+@login_required
 def edit_box(request, box_id):
 	# grab the object
 	box = Box.objects.get(id=box_id)
+	# check for valid user
+	if box.user != request.user:
+		raise Http404
 	# set the form we're using...
 	form_class = BoxForm
 	# if form has been submitted

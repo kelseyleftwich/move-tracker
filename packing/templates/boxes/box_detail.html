@@ -19,9 +19,11 @@
 		{% endfor %}	
 	</ul>
 	</p>
-
+	<p>User: {{box.user.first_name}}</p>
+	{% if user == box.user %}
 	<a href="{% url 'edit_box' box_id=box.id %}">
 	Edit me!
 	</a>
+	{% endif %}
 
 {% endblock content %}
