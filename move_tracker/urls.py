@@ -26,8 +26,11 @@ urlpatterns = [
 	url(r'^boxes/(?P<box_id>[-\w]+)/edit/$', views.edit_box, name='edit_box'),
 	url(r'^things/(?P<thing_id>[-\w]+)/edit/$', views.edit_thing, name='edit_thing'),
 	# browse
+	url(r'^browse/$', views.browse, name='browse'),
 	url(r'^browse/things/name/$', views.browse_things_by_name, name='browse_things'),
 	url(r'^browse/things/name/(?P<initial>[-\w]+)/$', views.browse_things_by_name, name='browse_things_by_name'),
+	url(r'^browse/boxes/name/$', views.browse_boxes_by_name, name='browse_boxes'),
+	url(r'^browse/boxes/name/(?P<initial>[-\w]+)/$', views.browse_boxes_by_name, name='browse_boxes_by_name'),
 	# admin
     url(r'^admin/', admin.site.urls),
 ]

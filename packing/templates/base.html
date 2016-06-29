@@ -4,28 +4,31 @@
 <head>
 	<title>
 		{% block title %}
-		    Move Tracker
+		Move Tracker
 		{% endblock title %}
 	</title>
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 	{% block header %}
-	    
+	
 	{% endblock header %}
 </head>
 <body>
-<h1><a href="/" style="text-decoration: none;">Move Tracker</a></h1>
-<nav>
-<ul>
-<li>
-<a href="{% url 'browse_things' %}">Browse Things</a>
-</li>
-</ul>
-</nav>
-{% block content %}
-{% endblock content %}
+	<h1><a href="/" style="text-decoration: none;">Move Tracker</a></h1>
+	<nav>
+		<ul>
+			<li>
+				<a href="{% url 'browse_boxes' %}">Browse Boxes</a>
+			</li>
+			<li>
+				<a href="{% url 'browse_things' %}">Browse Things</a>
+			</li>
+		</ul>
+	</nav>
+	{% block content %}
+	{% endblock content %}
 
-{% block footer %}
-    
-{% endblock footer %}
+	{% block footer %}
+	
+	{% endblock footer %}
 </body>
 </html>

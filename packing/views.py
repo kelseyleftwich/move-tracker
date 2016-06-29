@@ -74,9 +74,19 @@ def edit_box(request, box_id):
 		# and render the template
 		return render(request, 'boxes/edit_box.html', {'box': box, 'form': form,})
 
+def browse(request):
+	return render(request, 'search/search.html')
+
 def browse_things_by_name(request, initial=None):
 	if initial:
 		things = Thing.objects.filter(name__istartswith=initial).order_by('name')
 	else:
 		things = Thing.objects.all().order_by('name')
 	return render(request, 'search/search.html', {'things': things,'initial': initial,})
+
+def browse_boxes_by_name(request, initial=None):
+	if initial:
+		boxes = Box.objects.filter(name__istartswith=initial).order_by('name')
+	else:
+		boxes = Box.objects.all().order_by('name')
+	return render(request, 'search/search.html', {'boxes': boxes,'initial': initial,})

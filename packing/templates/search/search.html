@@ -3,27 +3,70 @@
 Browse - {{ block.super }}
 {% endblock title %}
 {% block content %}
+
+<!-- if no boxes or things display links -->
+{% if not things and not boxes %}
+	<h1>Browse</h1>
+	<p><a href="{% url 'browse_boxes' %}">Browse Boxes</a></p>
+
+	<p><a href="{% url 'browse_things' %}">Browse Things</a></p>
+
+
+{% endif %}
+
+<!-- browsing things -->
+{%if things %}
 <h1>
 Browse Things{% if initial %} Starting with
-'{{ initial|title }}'{% endif %}
+	'{{ initial|title }}'{% endif %}
 </h1>
 {% for letter in 'abcdefghijklmnopqrstuvwxyz' %}
-<a href="{% url 'browse_things_by_name' initial=letter %}"
-{% if initial == letter %}class="active"{% endif %}>
-{{ letter|upper }}
-</a>
+	<a href="{% url 'browse_things_by_name' initial=letter %}"
+	{% if initial == letter %}class="active"{% endif %}>
+	{{ letter|upper }}
+	</a>
 {% endfor %}
 &nbsp;
 <a href="{% url 'browse_things' %}">
-{{ "ALL"|upper }}
+	{{ "ALL"|upper }}
 </a>
+
 <ul>
-{% for thing in things %}
-<li><a href="{% url 'thing_detail' thing_id=thing.id %}">
-{{ thing.name }}
-</a></li>
-{% empty %}
-<li>Sorry, no results!</li>
-{% endfor %}
+	{% for thing in things %}
+	<li><a href="{% url 'thing_detail' thing_id=thing.id %}">
+		{{ thing.name }}
+	</a></li>
+	{% empty %}
+	<li>Sorry, no results!</li>
+	{% endfor %}
 </ul>
+{% endif %}
+
+<!-- browsing boxes -->
+{% if boxes %}
+<h1>
+Browse Boxes{% if initial %} Starting with
+	'{{ initial|title }}'{% endif %}
+</h1>
+{% for letter in 'abcdefghijklmnopqrstuvwxyz' %}
+	<a href="{% url 'browse_boxes_by_name' initial=letter %}"
+	{% if initial == letter %}class="active"{% endif %}>
+	{{ letter|upper }}
+	</a>
+{% endfor %}
+&nbsp;
+<a href="{% url 'browse_boxes' %}">
+	{{ "ALL"|upper }}
+</a>
+
+<ul>
+	{% for box in boxes %}
+	<li><a href="{% url 'box_detail' box_id=box.id %}">
+		{{ box.name }}
+	</a></li>
+	{% empty %}
+	<li>Sorry, no results!</li>
+	{% endfor %}
+</ul>
+{% endif %}
 {% endblock content %}
